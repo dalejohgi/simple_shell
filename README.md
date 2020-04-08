@@ -1,4 +1,4 @@
-![Holberton school]
+![]
 (https://ph-files.imgix.net/75aa6247-480b-460b-b31b-e1365169cd1b?auto=format)
 
 # 0x16. C - Simple Shell
