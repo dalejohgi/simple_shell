@@ -1,7 +1,61 @@
 .TH SIMPLE-SHELL "17 APRIL 2020" "0.6" "Holberton Simple-Shell"
+
 .SH NAME
+.B Simple Shell - a simple UNIX command interpreter in C
+\- Command interpreter (shell)
+
 .SH SYNOPSIS
+Simple_shell [command] [file]
+
 .SH DESCRIPTION
+.Nm
+Is a command interpreter for the system. It takes in the name of a command_file
+and any arguments that that command can accept and runs the process in a child
+process fork producing the output of that command.
+
+.SH USAGE / COMPILATION
+All files are to be compiled using "gcc -Wall -Werror -Wextra -pedantic *.c -o hsh"
+
+.SH RETURN VALUE
+.B hsh
+will return zero (0), unless specified by an exit code.
+
+.SH EXAMPLES
+=========================================
+
+.SH INTERACTIVE MODE EXAMPLE
+.PP
+.PP
+$ ./hsh
+.PP
+##---> /bin/ls
+.PP
+hsh main.c shell.c
+.PP
+##---> exit
+.PP
+$
+.PP
+.PP
+=========================================
+
+.SH NON-INTERACTIVE MODE EXAMPLE
+.PP
+.PP
+$ echo "/bin/ls" | ./hsh
+.PP
+.PP
+hsh main.c shell.c test_ls_1
+
+=========================================
+
 .SH SEE ALSO
-.SH AUTHOR
-Marisol Ramirez Henao- David Alejandro Hincapie
+.I sh(1)
+
+.SH BUGS
+When you type yes it shows an infinite loop.
+
+.SH AUTHORS
+.B Marisol Ramirez Henao - David Alejandro Hincapie
+.br
+ \ @Marisol2201\          \ @dalejohgi

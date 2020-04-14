@@ -51,20 +51,26 @@ hsh main.c shell.c test_ls_2
 $
 ```
 
-| ### Files|
-| ### File| ### Description|
-| shell.c| executes the shell|
-| shell.h| header|
-| man_1_simple_shell| man page|
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
+ | Files |
+ | ------------- | ------------- |
+ | File | Description |
+ | ------------- | ------------- |
+ | shell.c | main function that calls the other functions |
+ | holberton.h | header file (contains all the prototypes) |
+ | man_1_simple_shell | man page |
+ | fill_args.c | fill an array with every input typed by the user |
+ | printnumber.c | prints numbers, used to print the error message |
+ | exist.c | verify if a file exist |
+ | notfound.c | prints error message when a command is not found |
+ | strcpm.c | compares two strings |
+ | strdup.c | duplicates a strings  |
+ | strlen.c | sizes the length of a string |
+ | append_command.c | concatenates an input with paths in global variable PATH|
+ | verify_path.c| verify if the first command can be executed |
+ | print_prompt.c | prints the prompt in the standar input |
+ | getenv.c | get the content of a global variable |
+ | _putchar.c | writes the character to stdout |
+ | exec.c | creates a new child process, executes a command and wait for the child process to update the status |
 
 ## Project Requirements
 - All your files will be compiled on Ubuntu 14.04 LTS
@@ -112,8 +118,8 @@ $
 
 ### 7. What happens when you type ls -l in the shell
 - Blog:
-  - LinkedIn
+  - [Blog LinkedIn](https://www.linkedin.com/pulse/what-happens-when-you-type-ls-l-shell-marisol-ram%C3%ADrez-henao/?published=t)
 
 ## Authors
-- Marisol Ramirez Henao
-- David Alejandro Hincapie
+- **Marisol Ramirez Henao** - [Marisol github](https://github.com/Marisol2201)
+- **David Alejandro Hincapie** - [David github](https://github.com/dalejohgi)
