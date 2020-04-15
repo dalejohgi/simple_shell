@@ -20,8 +20,8 @@ char *_getenv(char *global_var)
 			{
 				env_tok = strtok(NULL, cutter);
 				/**printf("%s\n", token);*/
-				free(envdup);
 				env_tok_dup = _strdup(env_tok);
+				free(envdup);
 				return (env_tok_dup);
 			}
 			i++;
