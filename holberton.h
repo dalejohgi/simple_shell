@@ -26,4 +26,5 @@ char *_getenv(char *global_var);
 int _printp(const char *prompt, unsigned int size);
 int _putchar(char c);
 int exist(char *pathname);
+void free_grid(char **grid, int heigth);
 #endif

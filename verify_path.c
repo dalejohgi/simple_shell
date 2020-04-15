@@ -10,7 +10,8 @@ int verify_path(char **arguments)
 	char *global_dup = NULL;
 	char *dir_path = NULL; /**"   /usr/bin    "*/
 	char *command_path = NULL; /**"   /usr/bin/touch      "*/
-	int exist_stat = -1;
+	char *test_cph[121];
+	int exist_stat = -1, i = 0;
 
 	global_path = _getenv("PATH");
 	global_dup = (_strdup(global_path));
@@ -19,14 +20,22 @@ int verify_path(char **arguments)
 	while (exist_stat == -1 && dir_path != NULL)
 	{
 		command_path = append_command(dir_path, arguments[0]);
-		exist_stat = exist(command_path);
+		test_cph[i] = command_path;
+		exist_stat = exist(test_cph[i]);
 		dir_path = strtok(NULL, ":");
+		i++;
 	}
+	i--;
 	free(global_dup);
+	free_grid(test_cph, i);
 	if (exist_stat == 0)
 	{
-		arguments[0] = command_path;
+		arguments[0] = test_cph[i];
 		return (0);
 	}
-	return (-1);
+	else
+	{
+		free(test_cph[i]);
+		return (-1);
+	}
 }
