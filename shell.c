@@ -20,31 +20,31 @@ int main(void)
 		if (*entry != '\n')
 		{
 			fill_args(entry, arguments);
-			exist_stat = exist(arguments[0]);/**Exist evalua si path ingresado existe*/
-			if (exist_stat != 0)/**No encontró el archivo*/
+			if (arguments[0] != NULL)
 			{
-				vf_stat = verify_path(arguments);
-				if (vf_stat == 0)
+				exist_stat = exist(arguments[0]);/**Exist evalua si path ingresado existe*/
+				if (exist_stat != 0)/**No encontró el archivo*/
 				{
-					exit_stat = exec(arguments), free(entry);
+					vf_stat = verify_path(arguments);
+					if (vf_stat == 0)
+						exit_stat = exec(arguments), free(entry), free(*arguments);
+					else
+						exit_stat = print_not_found(entry, counter), free(entry);
 				}
-				else
-					exit_stat = print_not_found(entry, counter);
+				else /**Encontró el archivo*/
+					exit_stat = exec(arguments), free(entry);
 			}
-			else /**Encontró el archivo*/
-				exit_stat = exec(arguments);
-			free(*arguments);
+			else
+				free(entry);
 		}
 		else if (*entry == '\n')
 			free(entry);
-		entry = NULL; /**Reinicializa el puntero, para getline en cada llamado */
-		counter++;
+		entry = NULL, counter++;
 		if (isatty(STDIN_FILENO))
 			_printp("$ ", 2);/**prompt mini-shell*/
 		bytes_read = getline(&entry, &buf_size, stdin);
 	}
 	if (isatty(STDIN_FILENO))
-		_putchar('\n');
-	free(entry); /**Libera el ultimo getline para el EOF*/
+		_putchar('\n'), free(entry); /**Libera el ultimo getline para el EOF*/
 	return (exit_stat);
 }
