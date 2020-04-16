@@ -43,7 +43,7 @@ int main(void)
 			_printp("$ ", 2);/**prompt mini-shell*/
 		bytes_read = getline(&entry, &buf_size, stdin);
 	}
-	if (isatty(fileno(stdin)))
+	if (isatty(STDIN_FILENO))
 		_putchar('\n');
 	free(entry); /**Libera el ultimo getline para el EOF*/
 	return (exit_stat);
