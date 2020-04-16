@@ -4,12 +4,17 @@
  * @entry: input by the user
  * @counter: Times that the shell has been executed
  */
-
 void print_not_found(char *entry, int counter)
 {
-	char *shell_name = "hsh";
+	char *imode_shell_name = "hsh";
+	char *non_i_mode_shell_name = "./hsh";
 
-	write(2, shell_name, 3);
+	if (isatty(fileno(stdin)))
+		write(2, imode_shell_name, 3);
+	else
+	{
+		write(2, non_i_mode_shell_name, 5);
+	}
 	write(2, ": ", 2);
 	print_numbers(counter);
 	write(2, ": ", 2);
