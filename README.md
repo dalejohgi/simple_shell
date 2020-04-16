@@ -50,8 +50,6 @@ hsh main.c shell.c test_ls_2
 $
 ```
 
- | Files |
- | ------------- | ------------- |
  | File | Description |
  | ------------- | ------------- |
  | shell.c | main function that calls the other functions |
@@ -70,6 +68,7 @@ $
  | getenv.c | get the content of a global variable |
  | _putchar.c | writes the character to stdout |
  | exec.c | creates a new child process, executes a command and wait for the child process to update the status |
+ | free_grid.c | frees an array of pointers |
 
 ## Project Requirements
 - All your files will be compiled on Ubuntu 14.04 LTS
