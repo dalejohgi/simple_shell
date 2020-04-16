@@ -9,17 +9,27 @@
 int exec(char **arguments)
 {
 	pid_t pid = 0;/**Child process id*/
-	int stat = 0;/**indica el status del child process*/
+	int stat = 0, exe_stat = 0;/**indica el status del child process*/
 
 	pid = fork();/**Crea un proceso hijo*/
 	if (pid == -1)/**Falló al crear*/
 		_printp("failed\n", 7);
 	else if (pid == 0)/**Es el hijo...*/
 	{
-		execve(arguments[0], arguments, environ);/**Ejecuta el comando*/
-		exit(1);/**Terminar el child process con exito*/
+		exe_stat = execve(arguments[0], arguments, environ);/**Ejecuta el comando*/
+		if (exe_stat == -1)
+		{
+			exe_stat = 126;
+			perror("hsh");
+			exit(exe_stat);
+		} /**Terminar el child process con exito*/
+		exit(0);
 	}
 	else /**Es el padre*/
 		wait(&stat);/**Detiene la ejecución del padre hasta que el child termine*/
-	return (0);
-}
+	exe_stat = WEXITSTATUS(stat);
+	if (exe_stat != 0 && exe_stat != 126)
+		exe_stat = 2;
+
+	return (exe_stat);
+	}

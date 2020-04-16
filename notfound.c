@@ -3,13 +3,14 @@
  * print_not_found - Prints error message when a command is not found
  * @entry: input by the user
  * @counter: Times that the shell has been executed
+ * Return: Exit status
  */
-void print_not_found(char *entry, int counter)
+int print_not_found(char *entry, int counter)
 {
 	char *imode_shell_name = "hsh";
 	char *non_i_mode_shell_name = "./hsh";
 
-	if (isatty(fileno(stdin)))
+	if (isatty(STDIN_FILENO))
 		write(2, imode_shell_name, 3);
 	else
 	{
@@ -20,4 +21,5 @@ void print_not_found(char *entry, int counter)
 	write(2, ": ", 2);
 	write(2, entry, _strlen(entry));
 	write(2, ": not found\n", 12);
+	return (127);
 }

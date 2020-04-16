@@ -10,9 +10,9 @@ int main(void)
 	ssize_t bytes_read = 0; /** Bytes leídos de un getline*/
 	size_t buf_size = 0; /**Tamaño del buffer*/
 	char *entry = NULL, *arguments[20]; /**String de args que ingresa el usr*/
-	int counter = 1, vf_stat = 0, exist_stat = 0;
+	int counter = 1, vf_stat = 0, exist_stat = 0, exit_stat = 0;
 
-	if (isatty(fileno(stdin)))
+	if (isatty(STDIN_FILENO))
 		_printp("$ ", 2);/**prompt mini-shell*/
 	bytes_read = getline(&entry, &buf_size, stdin); /**sizeof entry, o -1 (EOF))*/
 	while (bytes_read != -1)
@@ -26,25 +26,25 @@ int main(void)
 				vf_stat = verify_path(arguments);
 				if (vf_stat == 0)
 				{
-					exec(arguments), free(entry);
+					exit_stat = exec(arguments), free(entry);
 				}
 				else
-					print_not_found(entry, counter);
+					exit_stat = print_not_found(entry, counter);
 			}
 			else /**Encontró el archivo*/
-				exec(arguments);
+				exit_stat = exec(arguments);
 			free(*arguments);
 		}
 		else if (*entry == '\n')
 			free(entry);
 		entry = NULL; /**Reinicializa el puntero, para getline en cada llamado */
 		counter++;
-		if (isatty(fileno(stdin)))
+		if (isatty(STDIN_FILENO))
 			_printp("$ ", 2);/**prompt mini-shell*/
 		bytes_read = getline(&entry, &buf_size, stdin);
 	}
 	if (isatty(fileno(stdin)))
 		_putchar('\n');
 	free(entry); /**Libera el ultimo getline para el EOF*/
-	return (0);
+	return (exit_stat);
 }

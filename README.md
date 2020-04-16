@@ -49,7 +49,7 @@ hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 $
 ```
-
+### Files
  | File | Description |
  | ------------- | ------------- |
  | shell.c | main function that calls the other functions |
