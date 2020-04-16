@@ -10,6 +10,9 @@ char *append_command(char *dir_path, char *command)
 	int a, b = 0, len1, len2;
 	char *command_path = NULL;
 
+	if (dir_path == NULL || command == NULL)
+		return (NULL);
+
 	len1 = _strlen(dir_path);
 	len2 = _strlen(command);
 	command_path = malloc(len1 + len2 + 2);
