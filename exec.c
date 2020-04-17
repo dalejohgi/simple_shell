@@ -28,8 +28,5 @@ int exec(char **arguments)
 	else /**Es el padre*/
 		wait(&stat);/**Detiene la ejecución del padre hasta que el child termine*/
 	exe_stat = WEXITSTATUS(stat);
-	if (exe_stat != 0 && exe_stat != 126)
-		exe_stat = 2;
-
 	return (exe_stat);
 	}

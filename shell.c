@@ -40,8 +40,13 @@ int main(void)
 			free(entry);
 		entry = NULL, counter++;
 		if (isatty(STDIN_FILENO))
+		{
 			_printp("$ ", 2);/**prompt mini-shell*/
-		bytes_read = getline(&entry, &buf_size, stdin);
+			bytes_read = getline(&entry, &buf_size, stdin);
+		} else 
+		{
+			break;
+		}
 	}
 	if (isatty(STDIN_FILENO))
 		_putchar('\n'), free(entry); /**Libera el ultimo getline para el EOF*/
