@@ -12,6 +12,8 @@ char *_getenv(char *global_var)
 
 	if (global_var != NULL)
 	{
+		if (environ == NULL)
+			return (NULL);
 		envdup = _strdup(environ[i]);
 		while (envdup != NULL)
 		{

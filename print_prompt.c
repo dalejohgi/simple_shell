@@ -9,8 +9,11 @@ int _printp(const char *prompt, unsigned int size)
 {
 	int written;
 
-	written = write(1, prompt, size);
-	if (written == -1)
-		return (-1);
-	return (0);
+	if (isatty(STDIN_FILENO))
+	{
+		written = write(1, prompt, size);
+		if (written == -1)
+			return (-1);
+	}
+		return (0);
 }

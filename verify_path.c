@@ -14,6 +14,8 @@ int verify_path(char **arguments)
 	int exist_stat = -1, i = 0;
 
 	global_path = _getenv("PATH");
+	if (global_path == NULL)
+		return (-1);
 	global_dup = (_strdup(global_path));
 	dir_path = strtok(global_dup, ":");
 	free(global_path);

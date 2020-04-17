@@ -12,8 +12,7 @@ int main(void)
 	char *entry = NULL, *arguments[20]; /**String de args que ingresa el usr*/
 	int counter = 1, vf_stat = 0, exist_stat = 0, exit_stat = 0, blt_stat = 0;
 
-	if (isatty(STDIN_FILENO))
-		_printp("$ ", 2);/**prompt mini-shell*/
+	_printp("$ ", 2);/**prompt mini-shell*/
 	bytes_rd = getline(&entry, &bf_size, stdin); /**sizeof entry, o -1 (EOF))*/
 	while (bytes_rd != -1)
 	{
@@ -30,9 +29,9 @@ int main(void)
 						exit_stat = exec(arguments), free(entry), free(*arguments);
 					else
 					{
-						blt_stat = verify_blt(arguments, exit_stat);
-						if (blt_stat != 0)
-							exit_stat = print_not_found(arguments, counter), free(entry);
+					blt_stat = verify_blt(arguments, exit_stat);
+					if (blt_stat != 0)
+						exit_stat = print_not_found(arguments, counter), free(entry);
 					}
 				}
 				else /**Encontró el archivo*/
@@ -44,9 +43,7 @@ int main(void)
 		else if (*entry == '\n')
 			free(entry);
 		entry = NULL, counter++;
-		if (isatty(STDIN_FILENO))
-			_printp("$ ", 2);/**prompt mini-shell*/
-		bytes_rd = getline(&entry, &bf_size, stdin);
+		_printp("$ ", 2), bytes_rd = getline(&entry, &bf_size, stdin);
 	}
 	last_free(entry);
 	return (exit_stat);
