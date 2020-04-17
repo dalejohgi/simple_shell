@@ -29,7 +29,7 @@ int main(void)
 					if (vf_stat == 0)
 						exit_stat = exec(arguments), free(entry), free(*arguments);
 					else
-						exit_stat = print_not_found(entry, counter), free(entry);
+						exit_stat = print_not_found(arguments, counter), free(entry);
 				}
 				else /**Encontró el archivo*/
 					exit_stat = exec(arguments), free(entry);

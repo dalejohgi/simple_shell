@@ -21,7 +21,7 @@ int exec(char **arguments);
 int fill_args(char *entry, char **arguments);
 int print_numbers(int n);
 int _strlen(const char *string);
-int print_not_found(char *entry, int counter);
+int print_not_found(char **arguments, int counter);
 char *_getenv(char *global_var);
 int _printp(const char *prompt, unsigned int size);
 int _putchar(char c);

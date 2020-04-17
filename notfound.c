@@ -5,11 +5,11 @@
  * @counter: Times that the shell has been executed
  * Return: Exit status
  */
-int print_not_found(char *entry, int counter)
+int print_not_found(char **arguments, int counter)
 {
 	char *imode_shell_name = "hsh";
 	char *non_i_mode_shell_name = "./hsh";
-
+	
 	if (isatty(STDIN_FILENO))
 		write(2, imode_shell_name, 3);
 	else
@@ -19,7 +19,7 @@ int print_not_found(char *entry, int counter)
 	write(2, ": ", 2);
 	print_numbers(counter);
 	write(2, ": ", 2);
-	write(2, entry, _strlen(entry));
+	write(2, arguments[0], _strlen(arguments[0]));
 	write(2, ": not found\n", 12);
 	return (127);
 }
