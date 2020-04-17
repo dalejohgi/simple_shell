@@ -7,15 +7,15 @@
  */
 int main(void)
 {
-	ssize_t bytes_read = 0; /** Bytes leídos de un getline*/
-	size_t buf_size = 0; /**Tamaño del buffer*/
+	ssize_t bytes_rd = 0; /** Bytes leídos de un getline*/
+	size_t bf_size = 0; /**Tamaño del buffer*/
 	char *entry = NULL, *arguments[20]; /**String de args que ingresa el usr*/
-	int counter = 1, vf_stat = 0, exist_stat = 0, exit_stat = 0;
+	int counter = 1, vf_stat = 0, exist_stat = 0, exit_stat = 0, blt_stat = 0;
 
 	if (isatty(STDIN_FILENO))
 		_printp("$ ", 2);/**prompt mini-shell*/
-	bytes_read = getline(&entry, &buf_size, stdin); /**sizeof entry, o -1 (EOF))*/
-	while (bytes_read != -1)
+	bytes_rd = getline(&entry, &bf_size, stdin); /**sizeof entry, o -1 (EOF))*/
+	while (bytes_rd != -1)
 	{
 		if (*entry != '\n')
 		{
@@ -29,7 +29,11 @@ int main(void)
 					if (vf_stat == 0)
 						exit_stat = exec(arguments), free(entry), free(*arguments);
 					else
-						exit_stat = print_not_found(arguments, counter), free(entry);
+					{
+						blt_stat = verify_blt(arguments, exit_stat);
+						if (blt_stat != 0)
+							exit_stat = print_not_found(arguments, counter), free(entry);
+					}
 				}
 				else /**Encontró el archivo*/
 					exit_stat = exec(arguments), free(entry);
@@ -42,8 +46,8 @@ int main(void)
 		entry = NULL, counter++;
 		if (isatty(STDIN_FILENO))
 			_printp("$ ", 2);/**prompt mini-shell*/
-		bytes_read = getline(&entry, &buf_size, stdin);
+		bytes_rd = getline(&entry, &bf_size, stdin);
 	}
-	last_free(entry); /**Libera el ultimo getline para el EOF*/
+	last_free(entry);
 	return (exit_stat);
 }
