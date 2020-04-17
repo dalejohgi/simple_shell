@@ -11,6 +11,7 @@ int main(void)
 	size_t buf_size = 0; /**Tamaño del buffer*/
 	char *entry = NULL, *arguments[20]; /**String de args que ingresa el usr*/
 	int counter = 1, vf_stat = 0, exist_stat = 0, exit_stat = 0;
+
 	if (isatty(STDIN_FILENO))
 		_printp("$ ", 2);/**prompt mini-shell*/
 	bytes_read = getline(&entry, &buf_size, stdin); /**sizeof entry, o -1 (EOF))*/
@@ -40,15 +41,9 @@ int main(void)
 			free(entry);
 		entry = NULL, counter++;
 		if (isatty(STDIN_FILENO))
-		{
 			_printp("$ ", 2);/**prompt mini-shell*/
-			bytes_read = getline(&entry, &buf_size, stdin);
-		} else 
-		{
-			break;
-		}
+		bytes_read = getline(&entry, &buf_size, stdin);
 	}
-	if (isatty(STDIN_FILENO))
-		_putchar('\n'), free(entry); /**Libera el ultimo getline para el EOF*/
+	last_free(entry); /**Libera el ultimo getline para el EOF*/
 	return (exit_stat);
 }

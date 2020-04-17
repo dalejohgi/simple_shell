@@ -69,6 +69,7 @@ $
  | _putchar.c | writes the character to stdout |
  | exec.c | creates a new child process, executes a command and wait for the child process to update the status |
  | free_grid.c | frees an array of pointers |
+ | last_free.c | Free the memory for the last execution |
 
 ## Project Requirements
 - All your files will be compiled on Ubuntu 14.04 LTS

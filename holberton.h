@@ -10,9 +10,7 @@
 #include <fcntl.h>
 #include <limits.h>
 #include <time.h>
-
 extern char **environ;
-
 int _strcmp(char *str1, char *str2);
 int verify_path(char **arguments);
 char *_strdup(char *str);
@@ -27,4 +25,5 @@ int _printp(const char *prompt, unsigned int size);
 int _putchar(char c);
 int exist(char *pathname);
 void free_grid(char **grid, int heigth);
+void last_free(char *entry);
 #endif
