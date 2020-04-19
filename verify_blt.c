@@ -7,18 +7,19 @@
  */
 int verify_blt(char **arguments, int exit_stat)
 {
-	char *builtins[1] = {
-		"exit"
+	char *builtins[2] = {
+		"exit",
+		"env"
 	};
 	int i = 0;
 
-	while (i < 1)
+	while (i < 2)
 	{
 		if (_strcmp(arguments[0], builtins[i]) == 0)
 			break;
 		i++;
 	}
-	if (i == 1)
+	if (i == 2)
 		return (-1);
 	if (_strcmp(builtins[i], "exit") == 0)
 	{
