@@ -28,6 +28,7 @@ int verify_blt(char **arguments, int exit_stat)
 	if (_strcmp(builtins[i], "env") == 0)
 	{
 		write(1, environ, 1000);
+		return (0);
 	}
 	return (0);
 }
