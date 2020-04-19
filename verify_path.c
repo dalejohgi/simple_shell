@@ -14,10 +14,12 @@ int verify_path(char **arguments)
 	int exist_stat = -1, i = 0;
 
 	global_path = _getenv("PATH");
-	if (global_path == NULL || *global_path == "")
+	if (global_path == NULL)
 		return (-1);
 	global_dup = (_strdup(global_path));
 	dir_path = strtok(global_dup, ":");
+	if (dir_path == NULL)
+		return(-1);
 	free(global_path);
 	while (exist_stat == -1 && dir_path != NULL)
 	{
