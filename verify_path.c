@@ -18,6 +18,8 @@ int verify_path(char **arguments)
 		return (-1);
 	global_dup = (_strdup(global_path));
 	dir_path = strtok(global_dup, ":");
+	if (dir_path == NULL)
+		return(-1);
 	free(global_path);
 	while (exist_stat == -1 && dir_path != NULL)
 	{
