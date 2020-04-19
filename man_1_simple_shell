@@ -18,7 +18,7 @@ All files are to be compiled using "gcc -Wall -Werror -Wextra -pedantic *.c -o h
 
 .SH RETURN VALUE
 .B hsh
-will return zero (0), unless specified by an exit code.
+will return the exit stat, unless specified by an exit code.
 
 .SH EXAMPLES
 =========================================
